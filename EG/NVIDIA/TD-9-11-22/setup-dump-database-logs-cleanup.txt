@@ -1,0 +1,4 @@
+-Obtenir la taille du fichier : du dump-mysql.log
+-Pour réduire sa taille : logrotate ou les commandes suivantes :
+tail -n 1000 dump-mysql.log > dump-mysql.log.tmp
+mv -f dump-mysql.log.tmp dump-mysql.log.log

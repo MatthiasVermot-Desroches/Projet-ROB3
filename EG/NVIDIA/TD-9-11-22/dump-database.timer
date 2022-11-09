@@ -1,0 +1,11 @@
+[Unit]
+Description=Backup database every 10 minutes
+
+[Timer]
+OnCalendar=*-*-* *:00,10,20,30,40,50:00
+AccuracySec=1s
+Persistent=false
+Unit=filebackup.service
+
+[Install]
+WantedBy=timers.target

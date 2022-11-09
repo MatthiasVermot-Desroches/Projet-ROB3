@@ -1,0 +1,2 @@
+-Mettre le chemin du script après ExecStart=
+-Ajouter le timer : sudo systemctl enable --now dump-database.timer

@@ -1,0 +1,10 @@
+Pour modifier la taille d'un fichier : truncate [option] <taille> $logfile
+Pour controler la taille d'un fichier : 
+if [ "du $logfile" -gt 1000 ] //si le fichier occupe plus que 1000 KB
+then 
+    truncate -s 0 $logfile //vide le fichier log
+    
+fi
+
+Nous pourrions aussi définir une taille précise pour vider seulement une partie des logs.
+Je propose de le vider de 500 KB quand sa taille dépasse 1000 KB.

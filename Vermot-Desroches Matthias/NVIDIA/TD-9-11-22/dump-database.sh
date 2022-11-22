@@ -5,7 +5,7 @@ file_name="/<chemin>/classiclog_$currentdate"
 logfile="/var/log/dump-mysql.log"
 mysqldump -u username --password -C <nom database> > $file_name
 bzip2 $file_name
-echo "$currentdate : The database backup has been successfully created>> $logfile
+echo "$currentdate : The database backup has been successfully created">> $logfile
 number_of_files=$(ls -F /<chemin> | wc -l)
 if [ "$number_of_files" -gt "$limite" ];
 then 

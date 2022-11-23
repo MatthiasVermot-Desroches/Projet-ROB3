@@ -1,0 +1,5 @@
+[Unit]
+Description= backup database
+
+[Service]
+ExecStart=/<chemin>/dump-database.sh

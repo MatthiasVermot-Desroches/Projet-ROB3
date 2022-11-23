@@ -1,0 +1,4 @@
+sudo systemctl daemon-reload
+sudo systemctl start dump-database
+sudo systemctl enable dump-database.timer
+sudo systemctl start dump-database.timer

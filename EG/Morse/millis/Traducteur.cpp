@@ -14,6 +14,7 @@ void Traducteur::run() {
     int elasped_req = (_temp) ? 300 : 2100;
     if (elasped >= elasped_req) {
       _space = false;
+      _temp = false;
       _t = t;
       _oselector += 1;
       if (_oselector >= _sentence.length()) {

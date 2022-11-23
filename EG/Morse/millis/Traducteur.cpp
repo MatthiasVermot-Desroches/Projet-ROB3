@@ -11,28 +11,38 @@ void Traducteur::run() {
   unsigned long elasped = t - _t;
 
   if (_space) {
-    if (elasped >= 2000) {
+    if (elasped >= 2100) {
       _space = false;
       _t = t;
       _oselector += 1;
       if (_oselector >= _sentence.length()) {
-        _oselector = 0
+        _oselector = 0;
       }
     }
   } else {
-    String codes = letters[_sentence[_oselector] - 'a'];
-    String code = codes[_iselector];
+    int c = _sentence[_oselector];
+
+    String codes;
+    if (c >= 48 && c <= 57) {
+      codes = numbers[c - '0'];
+    } else if (c >= 65 && c <= 90) {
+      codes = letters[c - 'A'];
+    } else if (c >= 97 && c <= 122) {
+      codes = letters[c - 'a'];
+    }
+    
+    char code = codes[_iselector];
 
     digitalWrite(_ledPin, HIGH);
 
-    elasped_req = (code == '.') ? 300 : 1000;
+    int elasped_req = (code == '.') ? 300 : 900;
     if (elasped >= elasped_req) {
       _iselector += 1;
       if (_iselector >= codes.length()) {
         _iselector = 0;
         _oselector += 1;
         if (_oselector >= _sentence.length()) {
-          _oselector = 0
+          _oselector = 0;
         }
       }
       _t = t;

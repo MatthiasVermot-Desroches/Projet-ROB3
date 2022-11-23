@@ -4,7 +4,7 @@ Traducteur trad(6);
 
 void setup() {
   // put your setup code here, to run once:
-  trad.flash("test");
+  trad.flash("Hello world");
 }
 
 void loop() {

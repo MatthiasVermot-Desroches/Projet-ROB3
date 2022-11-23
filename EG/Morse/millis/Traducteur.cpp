@@ -29,6 +29,8 @@ void Traducteur::run() {
       codes = letters[c - 'A'];
     } else if (c >= 97 && c <= 122) {
       codes = letters[c - 'a'];
+    } else {
+      exit(-1);
     }
     
     char code = codes[_iselector];

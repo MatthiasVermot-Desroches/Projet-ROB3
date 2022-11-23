@@ -10,8 +10,9 @@ void Traducteur::run() {
   unsigned long t = millis();
   unsigned long elasped = t - _t;
 
-  if (_space) {
-    if (elasped >= 2100) {
+  if (_space || _temp) {
+    int elasped_req = (_temp) ? 300 : 2100;
+    if (elasped >= elasped_req) {
       _space = false;
       _t = t;
       _oselector += 1;
@@ -29,6 +30,8 @@ void Traducteur::run() {
       codes = letters[c - 'A'];
     } else if (c >= 97 && c <= 122) {
       codes = letters[c - 'a'];
+    } else if (c == 32) { 
+      _space = true;
     } else {
       exit(-1);
     }
@@ -48,7 +51,7 @@ void Traducteur::run() {
         }
       }
       _t = t;
-      _space = true;
+      _temp = true;
       digitalWrite(_ledPin, LOW);
     }
   }

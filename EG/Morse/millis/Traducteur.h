@@ -8,6 +8,7 @@ private:
     unsigned int _iselector = 0;
     unsigned int _oselector = 0;
     bool _space = 0;
+    bool _temp = 0;
     String _sentence;
     String letters[26] = {
     ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", // A-I

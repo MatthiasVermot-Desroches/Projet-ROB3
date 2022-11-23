@@ -10,16 +10,19 @@ void Traducteur::run() {
   unsigned long t = millis();
   unsigned long elasped = t - _t;
 
-  if (_space || _temp) {
-    int elasped_req = (_temp) ? 300 : 2100;
-    if (elasped >= elasped_req) {
+  if (_space) {
+    if (elasped >= 7*_timeUnit) {
       _space = false;
-      _temp = false;
       _t = t;
       _oselector += 1;
       if (_oselector >= _sentence.length()) {
         _oselector = 0;
       }
+    }
+  } else if (_temp) {
+    if (elasped >= _timeUnit) {
+      _temp = false;
+      _t = t;
     }
   } else {
     int c = _sentence[_oselector];
@@ -33,6 +36,7 @@ void Traducteur::run() {
       codes = letters[c - 'a'];
     } else if (c == 32) { 
       _space = true;
+      exit(0);
     } else {
       exit(-1);
     }
@@ -41,7 +45,7 @@ void Traducteur::run() {
 
     digitalWrite(_ledPin, HIGH);
 
-    int elasped_req = (code == '.') ? 300 : 900;
+    int elasped_req = (code == '.') ? _timeUnit : 3*_timeUnit;
     if (elasped >= elasped_req) {
       _iselector += 1;
       if (_iselector >= codes.length()) {

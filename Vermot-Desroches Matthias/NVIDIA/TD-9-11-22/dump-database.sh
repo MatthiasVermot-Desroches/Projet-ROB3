@@ -3,7 +3,7 @@ currentdate=$(date +%F-%H-%M-%S)
 maximum=5
 file_name="/<chemin>/classiclog_$currentdate"
 logfile="/var/log/dump-mysql.log"
-mysqldump -u username --password -C <nom database> > $file_name
+mysqldump -u username --password <nom database> > $file_name
 bzip2 $file_name
 echo "$currentdate : The database backup has been successfully created">> $logfile
 number_of_files=$(ls -F /<chemin> | wc -l)

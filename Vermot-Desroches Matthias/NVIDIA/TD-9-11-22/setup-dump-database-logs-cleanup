@@ -1,9 +1,9 @@
 Pour modifier la taille d'un fichier on peut utiliser logrotate.
 Pour controler la taille d'un fichier : 
 $logfile {
-size 100
-rotate 5
+size 1M #Je fixe une taille de rotation pour éviter le "flood"
+daily #Une rotation journalière permetterait de mieux savoir quand il y a eu une erreur
+rotate 30 #Je pense que garder les archives d'un mois de travail est suffisant.
 compress
 missingok
-noolddir
 }

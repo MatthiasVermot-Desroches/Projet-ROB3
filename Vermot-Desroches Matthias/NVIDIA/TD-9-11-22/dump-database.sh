@@ -10,6 +10,6 @@ number_of_files=$(ls -F /<chemin> | wc -l)
 if [ "$number_of_files" -gt "$limite" ];
 then 
     echo "$currentdate : The oldest backup will be removed" >> $logfile
-    rm /<chemin>/"$(ls -t /<chemin> | tail -1)"; //peut-être faire rm -f pour être sûr de pouvoir remove le fichier
+    rm /<chemin>/"$(ls -t /<chemin> | tail -1)"; #peut-être faire rm -f pour être sûr de pouvoir remove le fichier
     echo "$currentdate : The oldest backup has been successfully removed" >> $logfile
 fi

@@ -20,5 +20,5 @@ void loop() {
   //Ce problème "pourrait" être éviter si la carte était déconnectée à l'instant exact où la traduction se termine, c'est-à-dire à l'instant où le tableau trad est vidé (probablement à la milliseconde près...).
   traducteur.traduiremot(mot);
   traducteur.action();
-  Serial.println(traducteur.trad);
+  //Serial.println(traducteur.trad);
 }

@@ -21,8 +21,8 @@ void traducteur::traduire(char c) // remplace chaque lettre par son équivalent 
     switch (c)
     {
     case 'a':
-        strcat(trad,".-");
-        strcat(trad," "); // je rajoute le code morse d'un espaceentre 2 lettres dans chaque cas
+        strcat(trad,".-"); //Je concatène chaque traduction dans un tableau.
+        strcat(trad," "); // Je rajoute le code morse d'un espace entre 2 lettres dans chaque cas.
         break;
     default:
         break;

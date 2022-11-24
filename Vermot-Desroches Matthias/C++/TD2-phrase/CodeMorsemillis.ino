@@ -4,7 +4,7 @@
 #include "Traducteur.h"
 
 morse m(LED_BUILTIN);
-char mot[50]= "test";
+char mot[50]= "je programme avec plaisir";
 void setup() {
   // put your setup code here, to run once:
   pinMode(LED_BUILTIN, OUTPUT);

@@ -4,7 +4,7 @@ Description= run backup every 10 mins
 [Timer]
 OnCalendar=*:0/10
 AccuracySec=1s
-Unit=dump-database.service
+Unit=dump-database.service #pour être sûr que le timer soit associer au bon service
 
 [Install]
 WantedBy=timers.target

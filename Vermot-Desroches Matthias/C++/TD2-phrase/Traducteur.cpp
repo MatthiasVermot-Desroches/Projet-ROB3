@@ -21,108 +21,134 @@ void traducteur::traduire(char c) // remplace chaque lettre par son équivalent 
     switch (c)
     {
     case 'a':
+    case 'A':
         strcat(trad,".-"); //Je concatène chaque traduction dans un tableau.
         strcat(trad," "); // Je rajoute le code morse d'un espace entre 2 lettres dans chaque cas.
         break;
     default:
         break;
     case 'b':
+    case 'B':
         strcat(trad,"-...");
         strcat(trad," ");
         break;
     case 'c':
+    case 'C':
         strcat(trad,"-.-.");
         strcat(trad," ");
         break;
     case 'd':
+    case 'D':
         strcat(trad,"-..");
         strcat(trad," ");
         break;
     case 'e':
+    case 'E':
         strcat(trad,".");
         strcat(trad," ");
         break;
     case 'f':
+    case 'F':
         strcat(trad,"..-.");
         strcat(trad," ");
         break;
     case 'g':
+    case 'G':
         strcat(trad,"--.");
         strcat(trad," ");
         break;
     case 'h':
+    case 'H':
         strcat(trad,"....");
         strcat(trad," ");
         break;
     case 'i':
+    case 'I':
         strcat(trad,"..");
         strcat(trad," ");
         break;
     case 'j':
+    case 'J':
         strcat(trad,".---");
         strcat(trad," ");
         break;
     case 'k':
+    case 'K':
         strcat(trad,"-.-");
         strcat(trad," ");
         break;
     case 'l':
+    case 'L':
         strcat(trad,".-..");
         strcat(trad," ");
         break;
     case 'm':
+    case 'M':
         strcat(trad,"--");
         strcat(trad," ");
         break;
     case 'n':
+    case 'N':
         strcat(trad,"-.");
         strcat(trad," ");
         break;
     case 'o':
+    case 'O':
         strcat(trad,"---");
         strcat(trad," ");
         break;
     case 'p':
+    case 'P':
         strcat(trad,".--.");
         strcat(trad," ");
         break;
     case 'q':
+    case 'Q':
         strcat(trad,"--.-");
         strcat(trad," ");
         break;
     case 'r':
+    case 'R':
         strcat(trad,".-.");
         strcat(trad," ");
         break;
     case 's':
+    case 'S':
         strcat(trad,"...");
         strcat(trad," ");
         break;
     case 't':
+    case 'T':
         strcat(trad,"-");
         strcat(trad," ");
         break;
     case 'u':
+    case 'U':
         strcat(trad,"..-");
         strcat(trad," ");
         break;
     case 'v':
+    case 'V':
         strcat(trad,"...-");
         strcat(trad," ");
         break;
     case 'w':
+    case 'W':
         strcat(trad,".--");
         strcat(trad," ");
         break;
     case 'x':
+    case 'X':
         strcat(trad,"-..-");
         strcat(trad," ");
         break;
     case 'y':
+    case 'Y':
         strcat(trad,"-.--");
         strcat(trad," ");
         break;
     case 'z':
+    case 'Z':
         strcat(trad,"--..");
         strcat(trad," ");
         break;

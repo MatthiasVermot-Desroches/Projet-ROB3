@@ -7,7 +7,8 @@ private:
     unsigned long _t;
     unsigned int _iselector = 0;
     unsigned int _oselector = 0;
-    bool _space = 0;
+    bool _wordSpace = 0;
+    bool _letterSpace = 0;
     bool _temp = 0;
     String _sentence;
     int _timeUnit = 300;

@@ -1,13 +1,11 @@
 #include "Traducteur.h"
 
-Traducteur trad(6);
+Traducteur trad(LED_BUILTIN);
 
 void setup() {
-  // put your setup code here, to run once:
-  trad.flash("Hello world");
+  trad.flash("Hello word!");
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   trad.run();
 }

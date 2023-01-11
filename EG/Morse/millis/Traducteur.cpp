@@ -1,23 +1,32 @@
 #include "Traducteur.h"
 
-Traducteur::Traducteur(int ledPin) : _ledPin(ledPin) {}
+Traducteur::Traducteur(int ledPin) : _ledPin(ledPin) {
+  pinMode(ledPin, OUTPUT);  
+}
 
 Traducteur::~Traducteur() {}
 
-void Traducteur::flash(String sentence) { _sentence = sentence; }
+void Traducteur::flash(String sentence) { 
+  _sentence = sentence; 
+}
 
 void Traducteur::run() {
   unsigned long t = millis();
   unsigned long elasped = t - _t;
 
-  if (_space) {
+  if (_wordSpace) {
     if (elasped >= 7*_timeUnit) {
-      _space = false;
+      _wordSpace = false;
       _t = t;
       _oselector += 1;
       if (_oselector >= _sentence.length()) {
         _oselector = 0;
       }
+    }
+  } else if (_letterSpace) {
+    if (elasped >= 3*_timeUnit) {
+      _letterSpace = false;
+      _t = t;
     }
   } else if (_temp) {
     if (elasped >= _timeUnit) {
@@ -28,7 +37,7 @@ void Traducteur::run() {
     int c = _sentence[_oselector];
 
     if (c == 32) {
-      _space = true;
+      _wordSpace = true;
     } else {
       String codes;
       if (c >= 48 && c <= 57) {
@@ -38,7 +47,8 @@ void Traducteur::run() {
       } else if (c >= 97 && c <= 122) {
         codes = letters[c - 'a'];
       } else {
-        exit(-1);
+        _oselector += 1;
+        return;
       }
       
       char code = codes[_iselector];
@@ -51,12 +61,14 @@ void Traducteur::run() {
         if (_iselector >= codes.length()) {
           _iselector = 0;
           _oselector += 1;
+          _letterSpace = true;
           if (_oselector >= _sentence.length()) {
             _oselector = 0;
           }
+        } else {
+          _temp = true;
         }
         _t = t;
-        _temp = true;
         digitalWrite(_ledPin, LOW);
       }
     }

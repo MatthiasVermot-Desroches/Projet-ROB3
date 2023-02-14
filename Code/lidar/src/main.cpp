@@ -23,18 +23,51 @@ int servo_angle = SERVO_POS_MIN;
 #define PULSE_PER_REV 3200 // PPR_motor * Gear_reduction * Microstepping = 200*1*16
 #define TIME_PER_REV 500.0f // ms
 const int TIME_PER_PULSE = (TIME_PER_REV * 1000.0f)/ PULSE_PER_REV; // us
-const int PULSE_PER_DATAPOINT = 1;
+int PULSE_PER_DATAPOINT = 1;
 
 // External communication
 char serial_buffer[15];
 float theta,phi,rho;
 
+float x,y,z;
+float l_x,l_y,l_z;
+
 uint16_t pulses = 0;
 int8_t servo_dir = 1;
+
+const float point_per_cm2 = 1;
+const float kp_xy = 10;
+const float kp_z = 1;
+
+void adjustSpeed(float xydiff, float zdiff) {
+  PULSE_PER_DATAPOINT = (int)(kp_xy * (point_per_cm2 - xydiff));
+  servo_dir = (int)(kp_z * (point_per_cm2 - zdiff));
+
+  if (PULSE_PER_DATAPOINT < 0) {PULSE_PER_DATAPOINT = 0;}
+  if (servo_dir < 0) {servo_dir = 0;}
+}
+
+void focus() {
+  float angle = pulses / PULSE_PER_REV * 360;
+
+  float zdiff = z - l_z;
+
+  if (angle < 90  || (angle >= 180 && angle <= 270)) {
+    float diff = x - l_x;
+    adjustSpeed(diff, zdiff);
+  } else {
+    float diff = y - l_y;
+    adjustSpeed(diff, zdiff);
+  } 
+}
 
 // Send X Y Z to the computer
 void send_pos(){
   if(distance == 0) return;
+
+  l_x = z;
+  l_y = y;
+  l_z = z;
   
   theta = (float)pulses*360.0f/PULSE_PER_REV; //compute angle from motor pulses
   theta *= PI / 180.0f; // convert to radians
@@ -45,8 +78,14 @@ void send_pos(){
   
   rho = distance - 5.5f; // rho is the LIDAR distance
   
-  sprintf(serial_buffer,"%d,%d,%d,",(int)(rho*cos(phi)*cos(theta)),(int)(rho*cos(phi)*sin(theta)),(int)(rho*sin(phi)));
+  x = rho*cos(phi)*cos(theta);
+  y = rho*cos(phi)*sin(theta);
+  z = rho*sin(phi);
+
+  sprintf(serial_buffer,"%d,%d,%d,",(int)x,(int)y,(int)z);
   Serial.println(serial_buffer);
+
+  focus();
 }
 
 // Move both servos to change the mirror angle

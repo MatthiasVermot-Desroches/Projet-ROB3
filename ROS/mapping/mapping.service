@@ -1,0 +1,5 @@
+[Unit]
+Description= Lancement de la cartographie. Mapping's launch
+
+[Service]
+ExecStart=/<chemin/pathway>/mapping.sh

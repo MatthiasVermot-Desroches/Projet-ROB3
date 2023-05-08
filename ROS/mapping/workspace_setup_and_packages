@@ -1,0 +1,23 @@
+#ce script contient toutes les opérations à faire afin d'avoir les paramètres et les paquets nécessaires à l'utilisation des autres scripts une fois connecté sur la carte NVidia
+#pour ce connecté à notre carte Nvidia à partir d'un terminal :
+ssh polydar@192.168.55.1 -X #-X permet d'avoir une interface graphique comme nautilus avec la VM pour utliser les commandes comme rviz, en pratique cela ne sera pas utilisé mais c'est nécessaire pour la connection sur un ordinateur
+#pour éviter les problèmes avec les ports USB de la carte et le LiDAR :
+sudo chmod 666 /dev/USB0
+#paquets à installer:
+sudo apt update
+sudo apt install cmake python-catkin-pkg python-empty python-nose python-setuptools libgtest-dev python-rosinstall python-rosinstall-generator python-wstool build-essential git #ces paquets sont utilisés dans les paquets ROS que nous installerons
+sudo apt install gedit imagemagick #imagemagick sert pour convertir la carte en png et gedit est un éditeur de texte, on pourrait en utiliser un autre comme vim selon nos préférences
+
+#création d'un workspace
+#pour utiliser ROS et ces paquets, nous devons créer un workspace où compiler tout les paquets afin de les utiliser
+mkdir -p ~/catkin_ws/src #src sera le répertoire dans lequel nous metterons les dossiers des paquets avant des les compiler
+cd ~/catkin_ws/
+catkin_make #compile les paquets de src dans le workspace
+
+#après avoir créer le workspace, il faudra toujours le sourcer dès qu'on ouvrira un nouveau terminal:
+source ~/catkin_ws/devel/setup.bash
+
+#Installation des paquets de ROS : pour installer un paquet de ROS, il faut la bibliothèque du paquet contenu dans un dépôt
+cd ~/catkin_ws/src/
+sudo git clone https://github.com/Slamtec/rplidar_ros.git #bibliotèque pour utiliser un Lidar
+git clone https://github.com/tu-darmstadt-ros-pkg/hector_slam.git #bibliotèque permettant d'utiliser un algorithme SLAM (Simultaneous Localisation And Mapping)

@@ -1,6 +1,6 @@
 sudo systemctl daemon-reload
-sudo systemctl start rosmaster.service
-sudo systemctl start mapping.service
-sudo systemctl start saveamap.service
-sudo systemctl enable saveamap.timer
-sudo systemctl start saveamap.timer
+sudo systemctl start /etc/systemd/system/rosmaster.service
+sudo systemctl start /etc/systemd/system/mapping.service
+sudo systemctl start /etc/systemd/system/saveamap.service
+sudo systemctl enable /etc/systemd/system/saveamap.timer
+sudo systemctl start /etc/systemd/system/saveamap.timer

@@ -2,4 +2,4 @@
 Description= lancement du rosmaster. Rosmaster's launch
 
 [Service]
-ExecStart=/etc/systemd/system/rosmaster.sh
+ExecStart=/<chemin/pathway>/rosmaster.sh

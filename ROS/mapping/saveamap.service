@@ -1,0 +1,5 @@
+[Unit]
+Description= lancement de la sauvegarde. Save's launch
+
+[Service]
+ExecStart=/<chemin/pathway>/saveamap.sh

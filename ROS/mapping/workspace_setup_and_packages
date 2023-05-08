@@ -13,6 +13,9 @@ sudo apt install gedit imagemagick #imagemagick sert pour convertir la carte en 
 mkdir -p ~/catkin_ws/src #src sera le répertoire dans lequel nous metterons les dossiers des paquets avant des les compiler
 cd ~/catkin_ws/
 catkin_make #compile les paquets de src dans le workspace
+#Créons ensuite 2 sous-répertoires, un pour les cartes en format png et un pour les cartes en format yaml et pgm:
+mkdir map_in_png
+mkdir maps
 
 #après avoir créer le workspace, il faudra toujours le sourcer dès qu'on ouvrira un nouveau terminal:
 source ~/catkin_ws/devel/setup.bash

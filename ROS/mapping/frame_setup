@@ -1,0 +1,24 @@
+#Ce fichier contient les instructions à suivre pour paramétrer correctement la fenêtre rviz utiliser pour créer, afficher et sauvegarder la carte
+#Ce fichier est à suivre après avoir téléchargé les paquets du fichier workspace_setup_and_packages
+sudo gedit ~/catkin_ws/src/hector_slam/hector_mapping/launch/mapping_default.launch #ouvrez la configuration par defaut du paquet hector_slam avec un éditeur de texte
+#modifier les lignes 5 et 6 suivantes :
+<arg name="base_frame" default="base_footprint"/>
+<arg name="odom_frame" default="nav"/>
+#en : <arg name="base_frame" default="base_link"/>
+<arg name="odom_frame" default="base_link"/>
+#et la ligne 54 :<!--<node pkg="tf" type="static_transform_publisher" name="map_nav_broadcaster" args="0 0 0 0 0 0 map nav 100"/>-->
+#en : <node pkg="tf" type="static_transform_publisher" name="base_to_laser_broadcaster" args="0 0 0 0 0 0 base_link laser 100"/>
+#Cela va permettre de paramétrer la fenêtre de simulation pour qu'elle utilise le lidar pour générer la carte plutôt que des coordonnées prédéfinies
+gedit ~/catkin_ws/src/hector_slam/hector_slam_launch/launch/tutorial.launch #Ouvrez ensuite le fichier tutoriel qui est une carte vide que vous allez remplir avec les données du lidar
+#Modifiez ensuite la ligne 7 :
+<param name="/use_sim_time" value="true"/>
+#en : <param name="/use_sim_time" value="false"/>
+
+#recréez ensuite le workspace:
+cd ~/catkin_ws/
+catkin_make
+
+#en cas d'une erreur : Project ‘cv_bridge’ specifies ‘/usr/include/opencv’ as an include dir, which is not found. It does neither exist as an absolute directory nor in…
+#Faites les commandes suivantes et refaites ensuite le workspace :
+cd /usr/include
+sudo ln -s opencv4/ opencv
